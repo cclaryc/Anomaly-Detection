@@ -54,18 +54,18 @@ class Button:
         self.action = action
         self.visited = visited
         self.last_pressed_time = 0
-        self.cooldown_duration = 0.5  # Cooldown duration in seconds
+        self.cooldown_duration = 0.5  
 
     def draw(self, screen, outline=None):
         button_surface = pygame.Surface((self.x, self.y), pygame.SRCALPHA)
         button_surface.fill(TRANSPARENT)
         if self.text != '':
-            font = pygame.font.SysFont("Cambria Math", 20)  # Create font object
-            text = font.render(self.text, True, (211, 211, 211))  # Render font
-            screen.blit(text, (self.x + (self.width / 2 - text.get_width() / 2), self.y + (self.height / 2 - text.get_height() / 2)))  # Draw text on button
+            font = pygame.font.SysFont("Cambria Math", 20)  
+            text = font.render(self.text, True, (211, 211, 211))  
+            screen.blit(text, (self.x + (self.width / 2 - text.get_width() / 2), self.y + (self.height / 2 - text.get_height() / 2)))  
 
     def is_over(self, pos):
-        if pos[0] > self.x and pos[0] < self.x + self.width:  # Mouse position on x-axis
+        if pos[0] > self.x and pos[0] < self.x + self.width:  
             if pos[1] > self.y and pos[1] < self.y + self.height:
                 return True
         return False
@@ -79,15 +79,15 @@ class Button:
     
 class menu:
     def draw_semi_transparent_window(screen, width, height):
-        window_surface = pygame.Surface((width, height), pygame.SRCALPHA)  # Create surface with alpha channel
-        window_surface.fill(TRANSPARENT)  # Fill with transparent color
-        screen.blit(window_surface, (screen_width - width, screen_height - height))  # Draw surface
-        return window_surface  # Return reference to created surface
+        window_surface = pygame.Surface((width, height), pygame.SRCALPHA)  
+        window_surface.fill(TRANSPARENT)  
+        screen.blit(window_surface, (screen_width - width, screen_height - height))  
+        return window_surface  
 
 def Draw_text(screen, text, x, y, L, l, color):
-    font = pygame.font.SysFont("Cambria Math", 20)  # Create font object
-    text = font.render(text, True, (211, 211, 211))  # Render font
-    screen.blit(text, (x + (L / 2 - text.get_width() / 2), y + (l / 2 - text.get_height() / 2)))  # Draw text on button
+    font = pygame.font.SysFont("Cambria Math", 20)  
+    text = font.render(text, True, (211, 211, 211))  
+    screen.blit(text, (x + (L / 2 - text.get_width() / 2), y + (l / 2 - text.get_height() / 2)))  
 
 class StartButton:
     def __init__(self, color, x, y, width, height, text='', action=None):
@@ -165,14 +165,14 @@ class PauseButton:
             pygame.draw.rect(screen, outline, (self.x, self.y, self.width, self.height), 2)
         if self.text != '':
             font = pygame.font.SysFont("Cambria Math", 20)
-            text = font.render(self.text, True, BLACK)  # Draw text in black
+            text = font.render(self.text, True, BLACK) 
             screen.blit(text, (self.x + (self.width / 2 - text.get_width() / 2), self.y + (self.height / 2 - text.get_height() / 2)))
 
     def is_over(self, pos):
         return self.x <= pos[0] <= self.x + self.width and self.y <= pos[1] <= self.y + self.height
 
 def draw_centered_text(screen, text, y, color=GRAY):
-    font = pygame.font.SysFont("Cambria Math", 36)  # Title font and size
+    font = pygame.font.SysFont("Cambria Math", 36)  
     rendered_text = font.render(text, True, color)
     text_rect = rendered_text.get_rect(center=(semi_resolution[0] / 2, y))
     screen.blit(rendered_text, text_rect)
@@ -194,15 +194,15 @@ def pause_screen(window):
                     pygame.quit()
                     sys.exit()
             elif event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE:
-                return  # Resume the game by pressing Esc
+                return  
 
-        window.fill(BG_COLOR)  # Clear the screen with the background color
+        window.fill(BG_COLOR)  
         
-        draw_centered_text(window, "Ready to give up?", semi_resolution[1] // 3)  # Display the pause text
-        continue_button.draw(window, outline=BLACK)  # Draw the continue button with a black outline
-        exit_button.draw(window, outline=BLACK)  # Draw the exit button with a black outline
+        draw_centered_text(window, "Ready to give up?", semi_resolution[1] // 3)  
+        continue_button.draw(window, outline=BLACK)  
+        exit_button.draw(window, outline=BLACK)  
         
-        pygame.display.update()  # Update the display to reflect changes
+        pygame.display.update()  
 
 def win_screen(window):
     win_font = pygame.font.SysFont("Cambria Math", 72)
@@ -216,7 +216,7 @@ def win_screen(window):
                 sys.exit()
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_RETURN:
-                    return  # Press Enter to restart or exit
+                    return  
 
         window.fill(BLACK)
         window.blit(win_text, text_rect)
@@ -244,7 +244,7 @@ def game_over_screen(window, message, background_image_path):
                 sys.exit()
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_RETURN:
-                    return True  # Return to start screen
+                    return True  
                 if event.key == pygame.K_ESCAPE:
                     pygame.quit()
                     sys.exit()
@@ -299,12 +299,12 @@ def main(window):
     last_background_change_time = pygame.time.get_ticks()
     next_background_change_time = change_background()
     
-    frame_files = sorted(os.listdir(frame_dir))  # Ensure frames are in order
+    frame_files = sorted(os.listdir(frame_dir))  
     for frame_file in frame_files:
         frame_path = os.path.join(frame_dir, frame_file)
-        frame = pygame.image.load(frame_path).convert()  # Load frame
-        frame = pygame.transform.scale(frame, semi_resolution)  # Scale frame to screen size
-        frames.append(frame)  # Append the frame to the list
+        frame = pygame.image.load(frame_path).convert() 
+        frame = pygame.transform.scale(frame, semi_resolution)  
+        frames.append(frame)  
     
     menu_surf = menu()
     screen = pygame.display.set_mode(semi_resolution)
@@ -334,10 +334,10 @@ def main(window):
 
     anomaly_buttons = [abyss, dystorsion, extr, missing, intruder, movement, picture, camera_malf]
     
-    dir_poz = 0  # Current background directory
-    no_dir = len(frame_directories[0])  # Number of rooms
-    Draw_text(screen, frame_directories_names[dir_poz], 100, 100, 20, 20, ((0, 255, 0)))  # Room name label
-    Draw_text(screen, str(clock.get_rawtime()), 100, 500, 20, 20, ((0, 255, 0)))  # Timer label
+    dir_poz = 0  
+    no_dir = len(frame_directories[0])  
+    Draw_text(screen, frame_directories_names[dir_poz], 100, 100, 20, 20, ((0, 255, 0)))  
+    Draw_text(screen, str(clock.get_rawtime()), 100, 500, 20, 20, ((0, 255, 0)))  
     run = True
     number_of_anomalies = 0
     start_time=0
@@ -352,7 +352,7 @@ def main(window):
             else:
                 return
 
-        if game_current_time1 >= 30:  # Check if it's 6 AM
+        if game_current_time1 >= 30:  
             win_screen(window)
 
         clock.tick(FPS)
@@ -360,7 +360,7 @@ def main(window):
         game_current_time = int(real_current_time - game_start_time)
         current_time = pygame.time.get_ticks()
         if frame_index < len(frames):
-            screen.blit(frames[frame_index], (0, 0))  # Only blit if frame index is within bounds
+            screen.blit(frames[frame_index], (0, 0))  
             frame_index = (frame_index + 1) % len(frames)
         for event in pygame.event.get():  # Getting events
             if event.type == pygame.QUIT or (event.type == KEYDOWN and event.key == K_LCTRL):
@@ -402,12 +402,12 @@ def main(window):
                             frame_directories[1][index] = ""
                             frame_dir = frame_directories[0][index]
                             frame_files = sorted(os.listdir(frame_dir))
-                            frames.clear()  # Clear the old frames list
+                            frames.clear()  
                             for frame_file in frame_files:
                                 frame_path = os.path.join(frame_dir, frame_file)
-                                frame = pygame.image.load(frame_path).convert()  # Load frame
-                                frame = pygame.transform.scale(frame, semi_resolution)  # Scale frame to screen size
-                                frames.append(frame)  # Append the frame to the list
+                                frame = pygame.image.load(frame_path).convert()  
+                                frame = pygame.transform.scale(frame, semi_resolution)  
+                                frames.append(frame)  
                         else:
                             frame_directories[0][index] = frame_directories[1][index]
                             frame_directories[1][index] = ""
@@ -428,22 +428,22 @@ def main(window):
                         dir_poz = dir_poz - 1
                     frame_dir = frame_directories[0][dir_poz]
                     frame_files = sorted(os.listdir(frame_dir))
-                    frames.clear()  # Clear the old frames list
+                    frames.clear()  
                     for frame_file in frame_files:
                         frame_path = os.path.join(frame_dir, frame_file)
-                        frame = pygame.image.load(frame_path).convert()  # Load frame
-                        frame = pygame.transform.scale(frame, semi_resolution)  # Scale frame to screen size
-                        frames.append(frame)  # Append the frame to the list
+                        frame = pygame.image.load(frame_path).convert() 
+                        frame = pygame.transform.scale(frame, semi_resolution)  
+                        frames.append(frame)  
                 elif right_arrow.is_over(pos) and right_arrow.press():
                     dir_poz = (dir_poz + 1) % no_dir
                     frame_dir = frame_directories[0][dir_poz]
                     frame_files = sorted(os.listdir(frame_dir))
-                    frames.clear()  # Clear the old frames list
+                    frames.clear()  
                     for frame_file in frame_files:
                         frame_path = os.path.join(frame_dir, frame_file)
-                        frame = pygame.image.load(frame_path).convert()  # Load frame
-                        frame = pygame.transform.scale(frame, semi_resolution)  # Scale frame to screen size
-                        frames.append(frame)  # Append the frame to the list
+                        frame = pygame.image.load(frame_path).convert()  
+                        frame = pygame.transform.scale(frame, semi_resolution) 
+                        frames.append(frame) 
                 for b in buttons:
                     if b.is_over(pos) and b.press() == True:
                         for c in buttons: 
@@ -482,7 +482,7 @@ def main(window):
             print(random_number)
             print(frame_directories[0][random_number])
             print(frame_directories_copy[random_number])
-            if frame_directories[0][random_number] in frame_directories_copy[random_number]:  # If no anomaly already in room
+            if frame_directories[0][random_number] in frame_directories_copy[random_number]: 
                 print("Anomaly added")
                 if number_of_anomalies==0:
                     start_time=real_current_time
