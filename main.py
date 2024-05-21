@@ -352,7 +352,7 @@ def main(window):
             else:
                 return
 
-        if game_current_time1 >= 30:  
+        if game_current_time1 >= 6:  
             win_screen(window)
 
         clock.tick(FPS)
