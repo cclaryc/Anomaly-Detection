@@ -26,7 +26,7 @@ resolution = (info.current_w, info.current_h)
 screen_width, screen_height = info.current_w, info.current_h
 semi_resolution = (1920, 1080)
 
-frame_dir = r"C:\Users\Tudor\OneDrive\Desktop\Proiect Python\FramesBedroom"
+frame_dir = r"FramesBedroom"
 frames = []
 
 FPS = 10
@@ -269,14 +269,14 @@ def draw_mistakes(screen, mistakes):
         pygame.draw.line(screen, RED, (x_pos + 20, y_pos), (x_pos, y_pos + 20), 5)
 
 def main(window):
-    frame_directories = ([r"C:\Users\Tudor\OneDrive\Desktop\Proiect Python\FramesBedroom", r"C:\Users\Tudor\OneDrive\Desktop\Proiect Python\FramesBack", r"C:\Users\Tudor\OneDrive\Desktop\Proiect Python\FramesKitchen", r"C:\Users\Tudor\OneDrive\Desktop\Proiect Python\FramesBathroom"], [r"", r"", r"", r""])
-    frame_directories_copy = [r"C:\Users\Tudor\OneDrive\Desktop\Proiect Python\FramesBedroom", r"C:\Users\Tudor\OneDrive\Desktop\Proiect Python\FramesBack", r"C:\Users\Tudor\OneDrive\Desktop\Proiect Python\FramesKitchen", r"C:\Users\Tudor\OneDrive\Desktop\Proiect Python\FramesBathroom"]
+    frame_directories = ([r"FramesBedroom", r"FramesBack", r"FramesKitchen", r"FramesBathroom"], [r"", r"", r"", r""])
+    frame_directories_copy = [r"FramesBedroom", r"FramesBack", r"FramesKitchen", r"FramesBathroom"]
     frame_directories_names = ["Bedroom", "Frontdoor", "Kitchen", "Bathroom"]
-    anomalies_bed = (["dystorsion", r"C:\Users\Tudor\OneDrive\Desktop\Proiect Python\Anomalies\Beddystorsion1"], ["camera_malf", r"D:\PYTHON\projfromtudor\Anomalies\C:\Users\Tudor\OneDrive\Desktop\Proiect Python\Anomalies\Bedcamera_malf"], ["movement", r"C:\Users\Tudor\OneDrive\Desktop\Proiect Python\Anomalies\Bedmovement"], ["picture", r"C:\Users\Tudor\OneDrive\Desktop\Proiect Python\Anomalies\Bedpicturee"])
-    anomalies_back = (["movement", r"C:\Users\Tudor\OneDrive\Desktop\Proiect Python\Anomalies\Backmovement"], ["missing", r"C:\Users\Tudor\OneDrive\Desktop\Proiect Python\Anomalies\Backmissing"], ["extr", r"C:\Users\Tudor\OneDrive\Desktop\Proiect Python\Anomalies\Backextr"], ["intruder", r"C:\Users\Tudor\OneDrive\Desktop\Proiect Python\Anomalies\Backintruder2"])
-    anomalies_kitchen = (["extr", r"C:\Users\Tudor\OneDrive\Desktop\Proiect Python\Anomalies\Kitchenextr"], ["abyss", r"C:\Users\Tudor\OneDrive\Desktop\Proiect Python\Anomalies\Kitchenabyss"])
-    anomalies_bathroom = (["camera_malf", r"C:\Users\Tudor\OneDrive\Desktop\Proiect Python\Anomalies\Bathcamera_malf"], ["picture", r"C:\Users\Tudor\OneDrive\Desktop\Proiect Python\Anomalies\Bathpicture"], ["intruder", r"C:\Users\Tudor\OneDrive\Desktop\Proiect Python\Anomalies\Bathintruder1"], ["movement", r"C:\Users\Tudor\OneDrive\Desktop\Proiect Python\Anomalies\Bathmovement"])
-    frame_dir = r"C:\Users\Tudor\OneDrive\Desktop\Proiect Python\FramesBedroom"
+    anomalies_bed = (["dystorsion", r"Anomalies\Beddystorsion1"], ["camera_malf", r"Anomalies\Bedcamera_malf"], ["movement", r"Anomalies\Bedmovement"], ["picture", r"Anomalies\Bedpicturee"])
+    anomalies_back = (["movement", r"Anomalies\Backmovement"], ["missing", r"Anomalies\Backmissing"], ["extr", r"Anomalies\Backextr"], ["intruder", r"Anomalies\Backintruder2"])
+    anomalies_kitchen = (["extr", r"Anomalies\Kitchenextr"], ["abyss", r"Anomalies\Kitchenabyss"])
+    anomalies_bathroom = (["camera_malf", r"Anomalies\Bathcamera_malf"], ["picture", r"Anomalies\Bathpicture"], ["intruder", r"Anomalies\Bathintruder1"], ["movement", r"Anomalies\Bathmovement"])
+    frame_dir = r"FramesBedroom"
     
     mistake_count = 0
     max_mistakes = 3
@@ -346,7 +346,7 @@ def main(window):
         game_current_time1 = int(real_current_time - game_start_time) // 60
 
         if real_current_time-start_time>60 and start_time!=0:
-            if game_over_screen(window,"The anomalies have taken over! You weren't fast enough!",r"C:\Users\Tudor\OneDrive\Desktop\Proiect Python\creepy_face.png"):
+            if game_over_screen(window,"The anomalies have taken over! You weren't fast enough!",r"creepy_face.png"):
                 start_screen(window)
                 main(window)
             else:
@@ -395,8 +395,7 @@ def main(window):
                     if selected_anomaly_type in frame_directories[0][index]:
                         print("Correct report")
                         number_of_anomalies-=1
-                        if number_of_anomalies==0:
-                            start_time=0
+                        start_time=0
                         if frame_dir == frame_directories[0][index]:
                             print("Resetting current frame")
                             frame_directories[0][index] = frame_directories[1][index]
@@ -416,7 +415,7 @@ def main(window):
                         print("Incorrect report")
                         mistake_count += 1
                         if mistake_count >= max_mistakes:
-                            if game_over_screen(window,"The anomalies have taken over! You weren't accurate enough!",r"C:\Users\Tudor\OneDrive\Desktop\Proiect Python\creepy_face.png"):
+                            if game_over_screen(window,"The anomalies have taken over! You weren't accurate enough!",r"creepy_face.png"):
                                 start_screen(window)
                                 main(window)
                             else:
