@@ -41,7 +41,7 @@ def change_background():
     return random_time
 
 def real_to_game_time(real_time):
-    return (real_time % 300) / 5  # 5 real minutes = 1 in-game hour
+    return (real_time % 300) / 5  # 1 real minutes = 1 in-game hour
 
 class Button:
     def __init__(self, color, x, y, width, height, text='', action=None, visited=False):
